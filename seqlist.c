@@ -98,14 +98,14 @@ Doctor* List_At(SeqList* L, int pos)
     return &L->data[pos];
 }
 
-int List_FindById(const SeqList* L, const char* id)
+int List_FindByWorkId(const SeqList* L, const char* workId)
 {
     int i;
 
-    if (!L || !id) return -1;
-    /* 排序操作会改变物理顺序，故统一使用顺序查找 */
+    if (!L || !workId) return -1;
+    /* 栏位顺序可能因空位复用而不再按工号有序，故统一使用顺序查找 */
     for (i = 0; i < L->length; i++) {
-        if (strcmp(L->data[i].id, id) == 0) return i;
+        if (strcmp(L->data[i].workId, workId) == 0) return i;
     }
     return -1;
 }
